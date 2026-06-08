@@ -4,125 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recovery & Maintenance Block</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #eee;
-            min-height: 100vh;
-            padding: 16px;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { text-align: center; margin-bottom: 10px; color: #00d4ff; }
-        .subtitle { text-align: center; color: #888; margin-bottom: 22px; }
-        .goal {
-            text-align: center; background: #00d4ff22; padding: 15px;
-            border-radius: 10px; margin-bottom: 24px;
-        }
-        .goal strong { color: #00d4ff; }
-        .draft-banner {
-            background: #22c55e22; border: 1px solid #22c55e55; padding: 10px 15px;
-            border-radius: 8px; text-align: center; margin-bottom: 18px;
-            font-size: 13px; color: #86efac;
-        }
-        .week-nav {
-            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px;
-        }
-        .week-btn {
-            padding: 10px 14px; background: #2a2a4a; border: none; color: #fff;
-            border-radius: 8px; cursor: pointer; font-size: 14px; transition: all 0.2s;
-        }
-        .week-btn:hover { background: #00d4ff; color: #000; }
-        .week-btn.active { background: #00d4ff; color: #000; font-weight: bold; }
-        .week-btn.busy { border: 2px solid #fbbf24; }
-        .week { display: none; }
-        .week.active { display: block; }
-        .week-header {
-            background: linear-gradient(90deg, #00d4ff33, transparent);
-            padding: 16px; border-radius: 10px; margin-bottom: 16px;
-        }
-        .week-header h2 { color: #00d4ff; margin-bottom: 4px; font-size: 22px; }
-        .week-summary { color: #cbd5e1; font-size: 14px; margin-top: 6px; }
-        .phase-tag {
-            display: inline-block; padding: 4px 12px; border-radius: 20px;
-            font-size: 12px; font-weight: bold; margin-top: 10px;
-        }
-        .phase-recover { background: #4ade80; color: #000; }
-        .phase-maintain { background: #fbbf24; color: #000; }
-        .phase-reset { background: #a78bfa; color: #000; }
-        .week-card {
-            background: #ffffff11; padding: 14px; border-radius: 10px;
-            display: grid; gap: 8px;
-        }
-        .day {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 12px; background: #ffffff08; border-radius: 8px;
-        }
-        .day-name { font-weight: bold; font-size: 15px; min-width: 48px; }
-        .day-strength { background: linear-gradient(90deg, #ff6b9d22, transparent); }
-        .day-strength .day-name { color: #ff6b9d; }
-        .day-easy .day-name { color: #4ade80; }
-        .day-quality .day-name { color: #fbbf24; }
-        .day-long .day-name { color: #00d4ff; }
-        .day-rest .day-name { color: #94a3b8; }
-        .day-desc { color: #eee; font-size: 15px; flex: 1; }
-        .note {
-            margin-top: 4px; padding: 10px 12px; background: #ffffff08;
-            border-radius: 8px; font-size: 14px; color: #aaa;
-        }
-        .sessions { display: grid; gap: 16px; }
-        @media (min-width: 700px) { .sessions { grid-template-columns: 1fr 1fr; } }
-        .session {
-            background: #2a2a4a; border-radius: 12px; padding: 18px;
-        }
-        .session h3 {
-            color: #00d4ff; margin-bottom: 12px; padding-bottom: 10px;
-            border-bottom: 1px solid #ffffff22;
-        }
-        .session-b h3 { color: #fbbf24; }
-        .exercise-group { margin-bottom: 12px; }
-        .exercise-group-title {
-            font-size: 12px; color: #888; text-transform: uppercase;
-            margin-bottom: 8px; letter-spacing: 1px;
-        }
-        .exercise {
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 10px; padding: 8px 0; border-bottom: 1px solid #ffffff11;
-        }
-        .exercise:last-child { border-bottom: none; }
-        .exercise-name { flex: 1; font-size: 15px; color: #fff; }
-        .exercise-sets {
-            color: #00d4ff; font-weight: bold; white-space: nowrap; font-size: 14px;
-        }
-        .info-box {
-            margin-top: 22px; padding: 18px; background: #2a2a4a;
-            border-radius: 12px; border-left: 4px solid #fbbf24;
-        }
-        .info-box h4 { color: #fbbf24; margin-bottom: 12px; font-size: 18px; }
-        .info-box ul { padding-left: 20px; }
-        .info-box li { font-size: 14px; color: #cbd5e1; margin-bottom: 6px; }
-        .info-box li strong { color: #fff; }
-        .info-box p { color: #aaa; font-size: 13px; margin-top: 10px; }
-        .back-link {
-            display: block; text-align: center; margin-top: 28px;
-            color: #00d4ff; text-decoration: none; font-size: 14px;
-        }
-        @media (max-width: 600px) {
-            body { padding: 12px; }
-            h1 { font-size: 28px; }
-            .subtitle { font-size: 15px; }
-            .goal { font-size: 15px; }
-            .week-btn { padding: 9px 11px; font-size: 13px; }
-            .week-header h2 { font-size: 20px; }
-            .day { padding: 9px 10px; align-items: flex-start; }
-            .day-name { min-width: 40px; font-size: 14px; }
-            .day-desc { font-size: 14px; line-height: 1.4; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <div class="draft-banner">🌿 Recovery + maintenance month — built for post-HM reset, busy work weeks, and staying sane</div>
 
         <h1>Recovery & Maintenance Block</h1>
@@ -132,12 +17,12 @@
             <strong>Goals:</strong> absorb the HM, stay consistent through work peak, keep some strength touch, arrive fresh for the proper strength block
         </div>
 
-        <div class="week-nav">
-            <button class="week-btn" onclick="showWeek(1)">W1</button>
-            <button class="week-btn" onclick="showWeek(2)">W2</button>
-            <button class="week-btn busy" onclick="showWeek(3)">W3</button>
-            <button class="week-btn busy" onclick="showWeek(4)">W4</button>
-        </div>
+        <nav class="week-nav" aria-label="Week selector">
+            <button class="week-btn" data-week="1">W1</button>
+            <button class="week-btn" data-week="2">W2</button>
+            <button class="week-btn busy" data-week="3">W3</button>
+            <button class="week-btn busy" data-week="4">W4</button>
+        </nav>
 
         <div class="week active" id="week1">
             <div class="week-header">
@@ -146,13 +31,13 @@
                 <span class="phase-tag phase-recover">RECOVER</span>
             </div>
             <div class="week-card">
-                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc">Rest or easy walk</div></div>
-                <div class="day day-rest"><div class="day-name">Tue</div><div class="day-desc">Rest or 20–30 min gentle walk / spin</div></div>
-                <div class="day day-easy"><div class="day-name">Wed</div><div class="day-desc">20–30 min very easy jog if legs feel okay</div></div>
-                <div class="day day-rest"><div class="day-name">Thu</div><div class="day-desc">Rest or easy cross-training</div></div>
-                <div class="day day-easy"><div class="day-name">Fri</div><div class="day-desc">25–35 min easy run</div></div>
-                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc">Optional mobility + light activation only</div></div>
-                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc">35–45 min easy run</div></div>
+                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or easy walk</div></div>
+                <div class="day day-rest"><div class="day-name">Tue</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or 20–30 min gentle walk / spin</div></div>
+                <div class="day day-easy"><div class="day-name">Wed</div><div class="day-desc"><span class="day-type">Easy:</span> 20–30 min very easy jog if legs feel okay</div></div>
+                <div class="day day-rest"><div class="day-name">Thu</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or easy cross-training</div></div>
+                <div class="day day-easy"><div class="day-name">Fri</div><div class="day-desc"><span class="day-type">Easy:</span> 25–35 min easy run</div></div>
+                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc"><span class="day-type">Strength:</span> Optional mobility + light activation only</div></div>
+                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc"><span class="day-type">Long:</span> 35–45 min easy run</div></div>
                 <div class="note">Aim: feel better by the end of the week, not fitter.</div>
             </div>
         </div>
@@ -164,13 +49,13 @@
                 <span class="phase-tag phase-reset">RESET</span>
             </div>
             <div class="week-card">
-                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc">Rest or walk</div></div>
-                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc">35–45 min easy run + optional 4 x relaxed strides</div></div>
-                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc">Light strength session</div></div>
-                <div class="day day-easy"><div class="day-name">Thu</div><div class="day-desc">30–40 min easy run</div></div>
-                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc">Rest or mobility</div></div>
-                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc">Second light / moderate strength session</div></div>
-                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc">45–60 min easy run</div></div>
+                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or walk</div></div>
+                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc"><span class="day-type">Easy:</span> 35–45 min easy run + optional 4 x relaxed strides</div></div>
+                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc"><span class="day-type">Strength:</span> Light strength session</div></div>
+                <div class="day day-easy"><div class="day-name">Thu</div><div class="day-desc"><span class="day-type">Easy:</span> 30–40 min easy run</div></div>
+                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or mobility</div></div>
+                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc"><span class="day-type">Strength:</span> Second light / moderate strength session</div></div>
+                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc"><span class="day-type">Long:</span> 45–60 min easy run</div></div>
                 <div class="note">Aim: return to routine without creating fresh fatigue.</div>
             </div>
         </div>
@@ -182,13 +67,13 @@
                 <span class="phase-tag phase-maintain">MAINTAIN</span>
             </div>
             <div class="week-card">
-                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc">Rest or walk</div></div>
-                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc">30–45 min easy run</div></div>
-                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc">Light strength or mobility only if work is chaos</div></div>
-                <div class="day day-quality"><div class="day-name">Thu</div><div class="day-desc">Light quality touch: 20 min steady or 6 x 1 min smooth / 1 min easy</div></div>
-                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc">Rest</div></div>
-                <div class="day day-easy"><div class="day-name">Sat</div><div class="day-desc">30–40 min easy run or light strength</div></div>
-                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc">60–70 min easy long run</div></div>
+                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or walk</div></div>
+                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc"><span class="day-type">Easy:</span> 30–45 min easy run</div></div>
+                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc"><span class="day-type">Strength:</span> Light strength or mobility only if work is chaos</div></div>
+                <div class="day day-quality"><div class="day-name">Thu</div><div class="day-desc"><span class="day-type">Quality:</span> Light quality touch: 20 min steady or 6 x 1 min smooth / 1 min easy</div></div>
+                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc"><span class="day-type">Rest:</span> Rest</div></div>
+                <div class="day day-easy"><div class="day-name">Sat</div><div class="day-desc"><span class="day-type">Easy:</span> 30–40 min easy run or light strength</div></div>
+                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc"><span class="day-type">Long:</span> 60–70 min easy long run</div></div>
                 <div class="note">If work gets ugly: cut the quality first, then shorten the long run.</div>
             </div>
         </div>
@@ -200,13 +85,13 @@
                 <span class="phase-tag phase-maintain">MAINTAIN</span>
             </div>
             <div class="week-card">
-                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc">Rest or walk</div></div>
-                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc">35–45 min easy run + optional strides</div></div>
-                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc">Light strength session</div></div>
-                <div class="day day-quality"><div class="day-name">Thu</div><div class="day-desc">Controlled workout: 3 x 5–6 min moderate with easy jog recovery</div></div>
-                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc">Rest or mobility</div></div>
-                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc">Optional second light strength session</div></div>
-                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc">60–75 min easy long run</div></div>
+                <div class="day day-rest"><div class="day-name">Mon</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or walk</div></div>
+                <div class="day day-easy"><div class="day-name">Tue</div><div class="day-desc"><span class="day-type">Easy:</span> 35–45 min easy run + optional strides</div></div>
+                <div class="day day-strength"><div class="day-name">Wed</div><div class="day-desc"><span class="day-type">Strength:</span> Light strength session</div></div>
+                <div class="day day-quality"><div class="day-name">Thu</div><div class="day-desc"><span class="day-type">Quality:</span> Controlled workout: 3 x 5–6 min moderate with easy jog recovery</div></div>
+                <div class="day day-rest"><div class="day-name">Fri</div><div class="day-desc"><span class="day-type">Rest:</span> Rest or mobility</div></div>
+                <div class="day day-strength"><div class="day-name">Sat</div><div class="day-desc"><span class="day-type">Strength:</span> Optional second light strength session</div></div>
+                <div class="day day-long"><div class="day-name">Sun</div><div class="day-desc"><span class="day-type">Long:</span> 60–75 min easy long run</div></div>
                 <div class="note">Aim: finish this block wanting to train again, not needing another holiday.</div>
             </div>
         </div>
@@ -248,23 +133,13 @@
             </ul>
             <p>This month is not about proving fitness. It is about emerging in mid-May feeling steady, healthy, and ready to actually start the strength block properly.</p>
         </div>
-
         <a class="back-link" href="strength-block.html">← Back to Strength Block</a>
-    </div>
+    </main>
 
+    <script src="training.js"></script>
     <script>
-        function showWeek(weekNum) {
-            document.querySelectorAll('.week').forEach(week => week.classList.remove('active'));
-            document.querySelectorAll('.week-btn').forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById('week' + weekNum).classList.add('active');
-            document.querySelectorAll('.week-btn')[weekNum - 1].classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.week-btn').classList.add('active');
+        document.addEventListener("DOMContentLoaded", function() {
+            initWeekTabs({ initialWeek: 1 });
         });
     </script>
 </body>

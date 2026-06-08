@@ -14,6 +14,10 @@
             padding: 20px;
         }
         .container { max-width: 800px; margin: 0 auto; }
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 3px solid #fbbf24;
+            outline-offset: 3px;
+        }
         h1 { text-align: center; margin-bottom: 10px; color: #00d4ff; }
         .subtitle { text-align: center; color: #888; margin-bottom: 30px; }
         .goal { text-align: center; background: #00d4ff22; padding: 15px; border-radius: 10px; margin-bottom: 30px; }
@@ -158,7 +162,6 @@
             text-align: center;
         }
         .weight-input:focus {
-            outline: none;
             border-color: #4ade80;
             box-shadow: 0 0 5px #4ade8044;
         }
@@ -233,6 +236,11 @@
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            width: 100%;
+            background: transparent;
+            border: 0;
+            color: inherit;
+            text-align: left;
         }
         .simple-mode-header:hover {
             background: #ffffff08;
@@ -308,7 +316,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>💪 Sophia's Training Plan</h1>
         <p class="subtitle">Half Marathon: April 12, 2026 | Goal: Sub 1:55</p>
 
@@ -317,67 +325,66 @@
             <br><br>
             <a href="mobility.html" style="color: #a78bfa; text-decoration: none;">🌙 Nightly Mobility Routine →</a>
         </div>
-
-        <div class="week-nav">
-            <button class="week-btn" onclick="showWeek(6)">W6</button>
-            <button class="week-btn" onclick="showWeek(7)">W7</button>
-            <button class="week-btn deload" onclick="showWeek(8)">W8</button>
-            <button class="week-btn" onclick="showWeek(9)">W9</button>
-            <button class="week-btn" onclick="showWeek(10)">W10</button>
-            <button class="week-btn" onclick="showWeek(11)">W11</button>
-            <button class="week-btn deload" onclick="showWeek(12)">W12</button>
-            <button class="week-btn taper" onclick="showWeek(13)">W13</button>
-            <button class="week-btn taper" onclick="showWeek(14)">W14</button>
-            <button class="week-btn taper" onclick="showWeek(15)">W15</button>
-            <button class="week-btn race" onclick="showWeek(16)">W16 🏃‍♀️</button>
-        </div>
+        <nav class="week-nav" aria-label="Week selector" role="tablist">
+            <button type="button" class="week-btn" data-week="6" onclick="showWeek(6)">W6</button>
+            <button type="button" class="week-btn" data-week="7" onclick="showWeek(7)">W7</button>
+            <button type="button" class="week-btn deload" data-week="8" onclick="showWeek(8)">W8</button>
+            <button type="button" class="week-btn" data-week="9" onclick="showWeek(9)">W9</button>
+            <button type="button" class="week-btn" data-week="10" onclick="showWeek(10)">W10</button>
+            <button type="button" class="week-btn" data-week="11" onclick="showWeek(11)">W11</button>
+            <button type="button" class="week-btn deload" data-week="12" onclick="showWeek(12)">W12</button>
+            <button type="button" class="week-btn taper" data-week="13" onclick="showWeek(13)">W13</button>
+            <button type="button" class="week-btn taper" data-week="14" onclick="showWeek(14)">W14</button>
+            <button type="button" class="week-btn taper" data-week="15" onclick="showWeek(15)">W15</button>
+            <button type="button" class="week-btn race" data-week="16" onclick="showWeek(16)">W16 🏃‍♀️</button>
+        </nav>
 
         <!-- Simple Mode Section (moves to active week via JS) -->
         <div class="simple-mode collapsed" id="simpleMode">
-            <div class="simple-mode-header" onclick="toggleSimpleMode()">
+            <button type="button" class="simple-mode-header" aria-expanded="false" onclick="toggleSimpleMode()">
                 <h3>⚡ Simple Mode - Time Crunched? Just do these!</h3>
                 <span class="toggle-icon">▼</span>
-            </div>
+            </button>
             <div class="simple-mode-content">
                 <div class="simple-session">
                     <h4>Session A - Lower + Pull</h4>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank">Deadlift</a> or <a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank" rel="noopener noreferrer">Deadlift</a> or <a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat</a> 📹</span>
                         <span class="simple-exercise-sets">3 × 5-6</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a> (or <a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a>) 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a> (or <a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a>) 📹</span>
                         <span class="simple-exercise-sets">3 × 5</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank">Single-Leg Calf Raises</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank" rel="noopener noreferrer">Single-Leg Calf Raises</a> 📹</span>
                         <span class="simple-exercise-sets">2 × 10 each</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a> 📹</span>
                         <span class="simple-exercise-sets">2 × 30m each</span>
                     </div>
                 </div>
                 <div class="simple-session session-b">
                     <h4>Session B - Upper + Pull</h4>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a> (warm-up) 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a> (warm-up) 📹</span>
                         <span class="simple-exercise-sets">2 × 10</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a> 📹</span>
                         <span class="simple-exercise-sets">3 × 8</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a> 📹</span>
                         <span class="simple-exercise-sets">3 × 6</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a> 📹</span>
                         <span class="simple-exercise-sets">3 × max</span>
                     </div>
                     <div class="simple-exercise">
-                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a> 📹</span>
+                        <span class="simple-exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a> 📹</span>
                         <span class="simple-exercise-sets">2 × 6 each</span>
                     </div>
                 </div>
@@ -412,55 +419,55 @@
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Warmup/Plyos</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos (Ankle Bounces)</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos (Ankle Bounces)</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 15</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank">Skater Hops</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank" rel="noopener noreferrer">Skater Hops</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 5 each</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 6 each</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 8</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 30s</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">4 × 5</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🦵 Stability</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 8 each</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank">Single-Leg Calf Raise</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank" rel="noopener noreferrer">Single-Leg Calf Raise</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 10 each</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=7vTnfE6oiXk" target="_blank">SL Glute Bridge Hold</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=7vTnfE6oiXk" target="_blank" rel="noopener noreferrer">SL Glute Bridge Hold</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 20s each</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🧳 Core</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 30m each</span>
                         </div>
                     </div>
@@ -471,55 +478,55 @@
                     <div class="exercise-group">
                         <div class="exercise-group-title">⚡ Quick Plyos (Warm-up)</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span>
                             <span class="exercise-sets">2 × 10</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Movement Prep</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank">Lateral Band Walks</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank" rel="noopener noreferrer">Lateral Band Walks</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 12 each</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank">Bird Dogs</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener noreferrer">Bird Dogs</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 8 each</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper Push/Pull</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 8</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 10</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 15</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank">Face Pulls</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank" rel="noopener noreferrer">Face Pulls</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 12</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × max</span>
                         </div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=xzpboZttHKI" target="_blank">Scapular Pull-Ups</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=xzpboZttHKI" target="_blank" rel="noopener noreferrer">Scapular Pull-Ups</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">3 × 8</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🧘 Stability</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a> <span class="video-icon">📹</span></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a> <span class="video-icon">📹</span></span>
                             <span class="exercise-sets">2 × 30m each</span>
                         </div>
                         <div class="exercise">
@@ -558,28 +565,28 @@
                     <h3>Session A - Lower + Pull</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Warmup/Plyos</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span><span class="exercise-sets">2 × 15</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank">Skater Hops</a></span><span class="exercise-sets">2 × 5 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span><span class="exercise-sets">2 × 15</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank" rel="noopener noreferrer">Skater Hops</a></span><span class="exercise-sets">2 × 5 each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts ⬆️</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank">Deadlift</a> <span class="video-icon">📹</span></span><span class="exercise-sets">3 × 5</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank" rel="noopener noreferrer">Deadlift</a> <span class="video-icon">📹</span></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">3 × 8</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">4 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">4 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🦵 Stability</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a></span><span class="exercise-sets">2 × 8 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank">Single-Leg Calf Raise</a></span><span class="exercise-sets">3 × 10 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=7vTnfE6oiXk" target="_blank">SL Glute Bridge Hold</a></span><span class="exercise-sets">2 × 20s each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a></span><span class="exercise-sets">2 × 8 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank" rel="noopener noreferrer">Single-Leg Calf Raise</a></span><span class="exercise-sets">3 × 10 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=7vTnfE6oiXk" target="_blank" rel="noopener noreferrer">SL Glute Bridge Hold</a></span><span class="exercise-sets">2 × 20s each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🧳 Core</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 7-8</strong> - Add 2-5kg to main lifts if last week felt good.</div>
                 </div>
@@ -588,30 +595,30 @@
                     <div class="exercise-group">
                         <div class="exercise-group-title">⚡ Quick Plyos (Warm-up)</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span>
                             <span class="exercise-sets">2 × 10</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Movement Prep</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank">Lateral Band Walks</a></span><span class="exercise-sets">2 × 12 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank">Bird Dogs</a></span><span class="exercise-sets">2 × 8 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank" rel="noopener noreferrer">Lateral Band Walks</a></span><span class="exercise-sets">2 × 12 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener noreferrer">Bird Dogs</a></span><span class="exercise-sets">2 × 8 each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper Push/Pull ⬆️</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">3 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">3 × 10</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">3 × 15</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank">Face Pulls</a></span><span class="exercise-sets">3 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">3 × 10</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">3 × 15</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank" rel="noopener noreferrer">Face Pulls</a></span><span class="exercise-sets">3 × 12</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">3 × max</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=xzpboZttHKI" target="_blank">Scapular Pull-Ups</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">3 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=xzpboZttHKI" target="_blank" rel="noopener noreferrer">Scapular Pull-Ups</a></span><span class="exercise-sets">3 × 8</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🧘 Stability</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
                         <div class="exercise"><span class="exercise-name">Single-Leg Balance (eyes closed)</span><span class="exercise-sets">2 × 30s each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 7-8</strong> - Push a little harder. Add weight to bench if ready.</div>
@@ -644,23 +651,23 @@
                     <h3>Session A - Lower + Pull (Reduced)</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Warmup/Plyos</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span><span class="exercise-sets">2 × 12</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank">Skater Hops</a></span><span class="exercise-sets">2 × 4 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span><span class="exercise-sets">2 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank" rel="noopener noreferrer">Skater Hops</a></span><span class="exercise-sets">2 × 4 each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts ⬇️</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat</a></span><span class="exercise-sets">2 × 6 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">2 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">2 × 8</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">2 × 25s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">2 × 25s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🦵 Stability (Light)</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a></span><span class="exercise-sets">2 × 6 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank">Single-Leg Calf Raise</a></span><span class="exercise-sets">2 × 10 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=HmgXnST4Mdw" target="_blank" rel="noopener noreferrer">Single-Leg Calf Raise</a></span><span class="exercise-sets">2 × 10 each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6</strong> - Let your body recover. Don't chase intensity.</div>
                 </div>
@@ -668,18 +675,18 @@
                     <h3>Session B - Upper + Core (Reduced)</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Movement Prep</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank">Lateral Band Walks</a></span><span class="exercise-sets">2 × 10 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank">Bird Dogs</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=PhNkkOieB-8" target="_blank" rel="noopener noreferrer">Lateral Band Walks</a></span><span class="exercise-sets">2 × 10 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener noreferrer">Bird Dogs</a></span><span class="exercise-sets">2 × 6 each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper Push/Pull ⬇️</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">2 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">2 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">2 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">2 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 12</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Progression</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6</strong> - Easy week. Come back stronger next week.</div>
                 </div>
@@ -711,23 +718,23 @@
                     <h3>Session A - Maintain Strength</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Warmup</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span><span class="exercise-sets">2 × 12</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank">Skater Hops</a></span><span class="exercise-sets">2 × 4 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span><span class="exercise-sets">2 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=XhfVPA92pxQ" target="_blank" rel="noopener noreferrer">Skater Hops</a></span><span class="exercise-sets">2 × 4 each</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts (Maintain)</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank">Deadlift</a></span><span class="exercise-sets">3 × 4</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">3 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank" rel="noopener noreferrer">Deadlift</a></span><span class="exercise-sets">3 × 4</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">3 × 6</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Work</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🦵 Stability</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a></span><span class="exercise-sets">2 × 6 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a></span><span class="exercise-sets">2 × 25m each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a></span><span class="exercise-sets">2 × 25m each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 7</strong> - Running is priority. Maintain, don't chase PRs.</div>
                 </div>
@@ -735,13 +742,13 @@
                     <h3>Session B - Upper (Moderate)</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">3 × 6</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">3 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">3 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">3 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">3 × 12</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Holds</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6-7</strong> - Keep legs fresh for running.</div>
                 </div>
@@ -772,13 +779,13 @@
                     <h3>Session A - Maintain (Light)</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat</a></span><span class="exercise-sets">3 × 5 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">3 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat</a></span><span class="exercise-sets">3 × 5 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">3 × 6</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Work</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6-7</strong> - Biggest running week. Don't dig a hole!</div>
                 </div>
@@ -786,9 +793,9 @@
                     <h3>Session B - Upper Only</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">3 × 6</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">3 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">3 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6</strong> - Easy upper work. Save your legs.</div>
                 </div>
@@ -820,18 +827,18 @@
                     <h3>Session A - Full Session</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank">Deadlift</a></span><span class="exercise-sets">3 × 5</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank" rel="noopener noreferrer">Deadlift</a></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">3 × 8</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Work - TEST IT!</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">3 × 30s</span></div>
                         <div class="exercise"><span class="exercise-name">Band-Assisted or UNASSISTED?!</span><span class="exercise-sets">4 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🦵 Stability</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg RDL</a></span><span class="exercise-sets">2 × 8 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" rel="noopener noreferrer">Single-Leg RDL</a></span><span class="exercise-sets">2 × 8 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a></span><span class="exercise-sets">2 × 30m each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 7</strong> - Good week to test pull-up progress!</div>
                 </div>
@@ -840,16 +847,16 @@
                     <div class="exercise-group">
                         <div class="exercise-group-title">⚡ Quick Plyos (Warm-up)</div>
                         <div class="exercise">
-                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank">Pogos</a></span>
+                            <span class="exercise-name"><a href="https://www.youtube.com/watch?v=c2LBofIzUqs" target="_blank" rel="noopener noreferrer">Pogos</a></span>
                             <span class="exercise-sets">2 × 10</span>
                         </div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">3 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">3 × 10</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank">Face Pulls</a></span><span class="exercise-sets">3 × 12</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">3 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">3 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">3 × 10</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=rep-qVOkqgk" target="_blank" rel="noopener noreferrer">Face Pulls</a></span><span class="exercise-sets">3 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">3 × max</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 7</strong> - Enjoy the easier running week!</div>
                 </div>
@@ -880,13 +887,13 @@
                     <h3>Session A - Reduced Volume</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat</a></span><span class="exercise-sets">2 × 6 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">2 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">2 × 6</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Work</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">2 × 25s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">2 × 25s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">3 × 5</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6</strong> - Starting to freshen up. No new exercises.</div>
                 </div>
@@ -894,9 +901,9 @@
                     <h3>Session B - Reduced Volume</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">2 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank">Inverted Rows</a></span><span class="exercise-sets">2 × 8</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">2 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/fhVG73E5Wbo" target="_blank" rel="noopener noreferrer">Inverted Rows</a></span><span class="exercise-sets">2 × 8</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/B3U_IAEbEco" target="_blank" rel="noopener noreferrer">Flexed Arm Hang</a></span><span class="exercise-sets">2 × max</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 6</strong> - Keep moving, stay sharp.</div>
                 </div>
@@ -927,17 +934,17 @@
                     <h3>Session A - Light</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Main Lifts</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank">Deadlift</a></span><span class="exercise-sets">2 × 4</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press</a></span><span class="exercise-sets">2 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/7YYaGXvEr90" target="_blank" rel="noopener noreferrer">Deadlift</a></span><span class="exercise-sets">2 × 4</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press</a></span><span class="exercise-sets">2 × 6</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Up Work</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">2 × 20s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">2 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">2 × 20s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=5rR_bzBc1NA" target="_blank" rel="noopener noreferrer">Band-Assisted Pull-Ups</a></span><span class="exercise-sets">2 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🧳 Core Only</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank">Suitcase Carry</a></span><span class="exercise-sets">2 × 25m each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/yVYy3nRaHjA" target="_blank" rel="noopener noreferrer">Suitcase Carry</a></span><span class="exercise-sets">2 × 25m each</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 5-6</strong> - Keep moving, don't fatigue.</div>
                 </div>
@@ -945,8 +952,8 @@
                     <h3>Session B - Very Light</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press</a></span><span class="exercise-sets">2 × 6</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 12</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press</a></span><span class="exercise-sets">2 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 12</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 5</strong> - Minimal work. Staying loose.</div>
                 </div>
@@ -977,12 +984,12 @@
                     <h3>Session A - Minimal</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Light Lifts</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank">Bulgarian Split Squat (light)</a></span><span class="exercise-sets">2 × 5 each</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank">Overhead Press (light)</a></span><span class="exercise-sets">2 × 5</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/bwhl_9jN_3o" target="_blank" rel="noopener noreferrer">Bulgarian Split Squat (light)</a></span><span class="exercise-sets">2 × 5 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/afR3tPH6y_g" target="_blank" rel="noopener noreferrer">Overhead Press (light)</a></span><span class="exercise-sets">2 × 5</span></div>
                     </div>
                     <div class="exercise-group">
                         <div class="exercise-group-title">💪 Pull-Ups</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs only</a></span><span class="exercise-sets">2 × 20s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs only</a></span><span class="exercise-sets">2 × 20s</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 5</strong> - Last real strength session. Light and easy.</div>
                 </div>
@@ -990,8 +997,8 @@
                     <h3>Session B - Optional</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🏋️ Upper (Optional)</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank">Bench Press (very light)</a></span><span class="exercise-sets">2 × 6</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 10</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=EsTu2NVM1EI" target="_blank" rel="noopener noreferrer">Bench Press (very light)</a></span><span class="exercise-sets">2 × 6</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 10</span></div>
                     </div>
                     <div class="rpe-note"><strong>RPE: 4-5</strong> - Skip if you feel tired. Rest > training now.</div>
                 </div>
@@ -1022,10 +1029,10 @@
                     <h3>Monday/Tuesday Only - Activation</h3>
                     <div class="exercise-group">
                         <div class="exercise-group-title">🔥 Blood Flow Only</div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=aclHkVaku9U" target="_blank">Bodyweight Squats</a></span><span class="exercise-sets">2 × 10</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 10</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank">Dead Hangs</a></span><span class="exercise-sets">2 × 15s</span></div>
-                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank">Bird Dogs</a></span><span class="exercise-sets">2 × 6 each</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=aclHkVaku9U" target="_blank" rel="noopener noreferrer">Bodyweight Squats</a></span><span class="exercise-sets">2 × 10</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener noreferrer">Band Pull-Aparts</a></span><span class="exercise-sets">2 × 10</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/shorts/dOCQjaasbGs" target="_blank" rel="noopener noreferrer">Dead Hangs</a></span><span class="exercise-sets">2 × 15s</span></div>
+                        <div class="exercise"><span class="exercise-name"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener noreferrer">Bird Dogs</a></span><span class="exercise-sets">2 × 6 each</span></div>
                     </div>
                     <div class="rpe-note"><strong>15-20 minutes total.</strong> Just activation. No fatigue!</div>
                 </div>
@@ -1078,7 +1085,7 @@
         <div class="info-box" style="border-left-color: #00d4ff;">
             <h4 style="color: #00d4ff;">🏃 Pace Zones</h4>
             <table>
-                <tr><th>Type</th><th>Pace</th></tr>
+                <tr><th scope="col">Type</th><th scope="col">Pace</th></tr>
                 <tr><td>Easy</td><td>6:20 - 7:00 /km</td></tr>
                 <tr><td>Steady</td><td>5:55 - 6:10 /km</td></tr>
                 <tr><td>Tempo</td><td>5:15 - 5:25 /km</td></tr>
@@ -1090,7 +1097,8 @@
         <div class="info-box">
             <h4>⏱️ Rest Between Intervals</h4>
             <table>
-                <tr><th>Rep Length</th><th>Recovery</th></tr>
+                <caption class="sr-only">⏱️ Rest Between Intervals</caption>
+                <tr><th scope="col">Rep Length</th><th scope="col">Recovery</th></tr>
                 <tr><td>5 min tempo</td><td>60-90 sec jog</td></tr>
                 <tr><td>10 min tempo</td><td>90 sec - 2 min jog</td></tr>
                 <tr><td>2-4 km @ HM</td><td>90 sec - 2 min jog (or 400m)</td></tr>
@@ -1103,7 +1111,7 @@
             <h4 style="color: #a78bfa;">⚡ Optional Strides</h4>
             <p style="margin-bottom: 10px; color: #ccc;">Add 4-6 strides after easy runs 1-2x per week. Great for maintaining speed without adding fatigue.</p>
             <table>
-                <tr><th>What</th><th>How</th></tr>
+                <tr><th scope="col">What</th><th scope="col">How</th></tr>
                 <tr><td>Duration</td><td>20-30 seconds (80-100m)</td></tr>
                 <tr><td>Effort</td><td>85-90% - fast but smooth, not straining</td></tr>
                 <tr><td>Recovery</td><td>Walk back / 60-90 sec between</td></tr>
@@ -1134,7 +1142,7 @@
             </div>
             <input type="file" id="importFile" accept=".json" style="display:none" onchange="importWeights(event)">
         </div>
-    </div>
+    </main>
 
     <script>
         // Race date: April 12, 2026 (Sunday)
@@ -1167,26 +1175,26 @@
         }
 
         function showWeek(num, fromClick = true) {
-            // Hide all weeks
-            document.querySelectorAll('.week').forEach(w => w.classList.remove('active'));
-            // Show selected week
-            const activeWeek = document.getElementById('week-' + num);
-            activeWeek.classList.add('active');
-            // Update button states
-            document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.week').forEach(w => {
+                const isActive = w.id === 'week-' + num;
+                w.classList.toggle('active', isActive);
+                w.hidden = !isActive;
+                w.setAttribute('role', 'tabpanel');
+                w.setAttribute('tabindex', '0');
+            });
 
-            // Find and activate the correct button
-            if (fromClick && event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                // Programmatic call - find button by week number
-                const buttons = document.querySelectorAll('.week-btn');
-                buttons.forEach(b => {
-                    if (b.textContent.includes('W' + num)) {
-                        b.classList.add('active');
-                    }
-                });
-            }
+            document.querySelectorAll('.week-btn').forEach(b => {
+                const isActive = Number(b.dataset.week) === Number(num);
+                b.classList.toggle('active', isActive);
+                b.setAttribute('role', 'tab');
+                b.setAttribute('aria-selected', String(isActive));
+                b.setAttribute('aria-controls', 'week-' + b.dataset.week);
+                b.id = 'tab-week-' + b.dataset.week;
+                b.tabIndex = isActive ? 0 : -1;
+            });
+
+            const activeWeek = document.getElementById('week-' + num);
+            activeWeek.setAttribute('aria-labelledby', 'tab-week-' + num);
 
             // Move Simple Mode into the active week, before the sessions
             const simpleMode = document.getElementById('simpleMode');
@@ -1198,7 +1206,9 @@
 
         function toggleSimpleMode() {
             const simpleMode = document.getElementById('simpleMode');
-            simpleMode.classList.toggle('collapsed');
+            const isCollapsed = simpleMode.classList.toggle('collapsed');
+            const trigger = simpleMode.querySelector('.simple-mode-header');
+            trigger.setAttribute('aria-expanded', String(!isCollapsed));
         }
 
         // Weight tracking functions
@@ -1241,9 +1251,11 @@
 
                     // Create input
                     const input = document.createElement('input');
-                    input.type = 'text';
+                    input.type = 'number';
+                    input.inputMode = 'decimal';
                     input.className = 'weight-input';
                     input.placeholder = 'kg';
+                    input.setAttribute('aria-label', exerciseName + ' weight in kilograms');
                     input.dataset.weightKey = getWeightKey(weekId, exerciseName);
                     input.addEventListener('change', () => saveWeight(input));
                     input.addEventListener('blur', () => saveWeight(input));

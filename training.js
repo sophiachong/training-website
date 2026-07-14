@@ -1,5 +1,18 @@
+function parseLocalDate(dateString) {
+    if (dateString instanceof Date) {
+        return new Date(dateString.getFullYear(), dateString.getMonth(), dateString.getDate());
+    }
+
+    const parts = String(dateString).split("-").map(Number);
+    if (parts.length === 3 && parts.every(Number.isFinite)) {
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    return new Date(dateString);
+}
+
 function getWeekFromDate(startDate, maxWeek) {
-    const start = new Date(startDate);
+    const start = parseLocalDate(startDate);
     const today = new Date();
     start.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
